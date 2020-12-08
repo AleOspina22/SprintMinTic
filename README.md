@@ -1,2 +1,2 @@
-# SprintMinTic
+# dinerall
 Sprint Mintic 2022
