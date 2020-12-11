@@ -28,7 +28,7 @@ def login(username:str,password:str):
     else:
         return "Usuario o contraseña incorrectos. Pruebe nuevamente o regístrese."
 #funcion de registro, en esta no estoy muy seguro si esta bien, ya seria mirar en pruebas
-def signin(username:str,mail:str,password:str):
+def signup(username:str,mail:str,password:str):
     username=input[database_users[username]]
     mail=input[database_users[mail]]
     password=input[database_users[password]]
