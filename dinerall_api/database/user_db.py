@@ -1,25 +1,47 @@
 from typing import Dict
 from pydantic import BaseModel
+from datetime import date
+
+from models.user_models import UserIn, UserNew, UserOut
 
 class UserInDB(BaseModel):
-    username: str
-    mail: str #pienso que es mejor por correo porque no le veo la finalidad a que los usuarios tengan un seudonimo dado que no tienen interaccion entre ellos, sin embargo, lo dejo por si algo sale mal
+    name: str
+    mail: str
     password: str
+    birthday: date
+    gender: str
 
 database_users = Dict[str, UserInDB]
 database_users = {
-    "prueba1": UserInDB(**{"username":"prueba1","mail":"prueba1@mail.com","password":"prueba1"}),
-    "prueba2": UserInDB(**{"username":"prueba2","mail":"prueba2@mail.com","password":"prueba2"}),
+    "carlos@gmail.com": UserInDB(**{"name":"Carlos",
+                            "mail":"carlos@gmail.com",
+                            "password":"carlos12345",
+                            "birthday": date(2020, 12, 11),
+                            "gender": "m"
+                            }),
+    "veronica@gmail.com": UserInDB(**{"name":"Veronica",
+                            "mail":"veronica@gmail.com",
+                            "password":"veronica12345",
+                            "birthday": date(2020, 12, 11),
+                            "gender": "m",
+                            }),
+    "james@gmail.com": UserInDB(**{"name":"James",
+                            "mail":"james@gmail.com",
+                            "password":"james12345",
+                            "birthday": date(2020, 12, 11),
+                            "gender": "m"
+                            }),
 }
-#funcion de loguear
-def login(username:str,password:str):
-    if username and password in database_users.keys():
-        return "Se ha logueado correctamente. Bienvenido a Dinerall "+database_users[username]+"."
+
+# Función para loguear
+def get_user(mail: str):
+    if mail in database_users.keys():
+        return database_users[mail]
     else:
-        return "Usuario o contraseña incorrectos. Pruebe nuevamente o regístrese."
-#funcion de registro, en esta no estoy muy seguro si esta bien, ya seria mirar en pruebas
-def signin(username:str,mail:str,password:str):
-    username=input[database_users[username]]
-    mail=input[database_users[mail]]
-    password=input[database_users[password]]
-    return "Usuario registrado correctamente."
+        return None
+
+# Función para guardar el usuario
+def save_user(user_in_db: UserNew):
+    mail = user_in_db.mail
+    database_users[mail] = UserInDB(**user_in_db.dict())
+    return user_in_db
