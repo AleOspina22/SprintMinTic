@@ -2,6 +2,8 @@ from typing import Dict
 from pydantic import BaseModel
 from datetime import date
 
+from models.user_models import UserIn, UserNew, UserOut
+
 class UserInDB(BaseModel):
     name: str
     mail: str
