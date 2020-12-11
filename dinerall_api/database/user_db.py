@@ -4,7 +4,7 @@ from datetime import date
 
 class UserInDB(BaseModel):
     name: str
-    mail: str #pienso que es mejor por correo porque no le veo la finalidad a que los usuarios tengan un seudonimo dado que no tienen interaccion entre ellos, sin embargo, lo dejo por si algo sale mal
+    mail: str
     password: str
     birthday: date
     gender: str
@@ -22,17 +22,13 @@ database_users = {
                             "password":"james12345"}),
 }
 #funcion de loguear
-def login(mail:str,password:str):
-    if mail and password in database_users.keys():
-        return "Se ha logueado correctamente. Bienvenido a Dinerall "+database_users[mail]+"."
+def get_user(mail: str):
+    if mail in database_users.keys():
+        return database_users[mail]
     else:
-        return "Usuario o contraseña incorrectos. Pruebe nuevamente o regístrese."
+        return None
 
-
-def signup(name:str,mail:str,password:str, birthday:datetime.date,gender:str):
-    name=input[database_users[name]]
-    mail=input[database_users[mail]]
-    password=input[database_users[password]]
-    birthday=input[database_users[birthday]]
-    gender=input[database_users[gender]]
-    return "Usuario registrado correctamente."
+def save_user(user_in_db: UserNew):
+    mail = user_in_db.mail
+    database_users[mail] = user_in_db
+    return user_in_db

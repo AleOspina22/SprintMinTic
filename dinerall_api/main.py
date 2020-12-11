@@ -1,9 +1,10 @@
 from fastapi import FastAPI, HTTPException
 import datetime
 
-#from database.
+from database.user_db import UserInDB
+from database.user_db import get_user, save_user
+from models.user_models import UserIn, UserNew, UserOut
 
-from models.user_models import UserIn
 api = FastAPI()
 
 @api.post("/user/auth/")
@@ -27,7 +28,6 @@ async def create_user(user_new: UserNew):
     if user_in_db =! None:
         raise HTTPException(status_code=404, detail:"El email ya está registrado.")
 
-    save_user(user_new)
+    user_new = save_user(user_new)
     user_out = UserOut(**user_new.dict())
-
     return user_out
