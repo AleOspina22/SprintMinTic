@@ -15,13 +15,22 @@ database_users = Dict[str, UserInDB]
 database_users = {
     "carlos@gmail.com": UserInDB(**{"name":"Carlos",
                             "mail":"carlos@gmail.com",
-                            "password":"carlos12345"}),
+                            "password":"carlos12345",
+                            "birthday": date(2020, 12, 11),
+                            "gender": "m"
+                            }),
     "veronica@gmail.com": UserInDB(**{"name":"Veronica",
                             "mail":"veronica@gmail.com",
-                            "password":"veronica12345"}),
+                            "password":"veronica12345",
+                            "birthday": date(2020, 12, 11),
+                            "gender": "m",
+                            }),
     "james@gmail.com": UserInDB(**{"name":"James",
                             "mail":"james@gmail.com",
-                            "password":"james12345"}),
+                            "password":"james12345",
+                            "birthday": date(2020, 12, 11),
+                            "gender": "m"
+                            }),
 }
 #funcion de loguear
 def get_user(mail: str):
