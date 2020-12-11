@@ -14,7 +14,7 @@ database_users = {
 #funcion de loguear
 def login(username:str,password:str):
     if username and password in database_users.keys():
-        return "Se ha logueado correctamente. Bienvenido a Dinerall "+database_users[username]
+        return "Se ha logueado correctamente. Bienvenido a Dinerall "+database_users[username]+"."
     else:
         return "Usuario o contraseña incorrectos. Pruebe nuevamente o regístrese."
 #funcion de registro, en esta no estoy muy seguro si esta bien, ya seria mirar en pruebas
@@ -22,3 +22,4 @@ def signin(username:str,mail:str,password:str):
     username=input[database_users[username]]
     mail=input[database_users[mail]]
     password=input[database_users[password]]
+    return "Usuario registrado correctamente."
