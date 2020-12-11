@@ -41,5 +41,5 @@ def get_user(mail: str):
 
 def save_user(user_in_db: UserNew):
     mail = user_in_db.mail
-    database_users[mail] = user_in_db
+    database_users[mail] = UserInDB(**user_in_db.dict())
     return user_in_db

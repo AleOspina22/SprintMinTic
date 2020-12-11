@@ -24,7 +24,7 @@ async def auth_user(user_in: UserIn):
 @api.put("/user/signup/")
 async def create_user(user_new: UserNew):
 
-    user_in_db = get_user(user_new.email)
+    user_in_db = get_user(user_new.mail)
     if user_in_db != None:
         raise HTTPException(status_code=404, detail="El email ya está registrado.")
 
