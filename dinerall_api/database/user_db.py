@@ -32,13 +32,15 @@ database_users = {
                             "gender": "m"
                             }),
 }
-#funcion de loguear
+
+# Función para loguear
 def get_user(mail: str):
     if mail in database_users.keys():
         return database_users[mail]
     else:
         return None
 
+# Función para guardar el usuario
 def save_user(user_in_db: UserNew):
     mail = user_in_db.mail
     database_users[mail] = UserInDB(**user_in_db.dict())
