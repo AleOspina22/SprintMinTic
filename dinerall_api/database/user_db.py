@@ -1,12 +1,12 @@
 from typing import Dict
 from pydantic import BaseModel
-import datetime
+from datetime import date
 
 class UserInDB(BaseModel):
     name: str
     mail: str #pienso que es mejor por correo porque no le veo la finalidad a que los usuarios tengan un seudonimo dado que no tienen interaccion entre ellos, sin embargo, lo dejo por si algo sale mal
     password: str
-    birthday: datetime.date
+    birthday: date
     gender: str
 
 database_users = Dict[str, UserInDB]

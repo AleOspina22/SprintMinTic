@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import date
 
 class UserIn(BaseModel):
     mail: str
@@ -8,11 +9,9 @@ class UserNew(BaseModel):
     name:str
     mail: str
     password:str
-    birthday: datetime.date
+    birthday: date
     gender: str
 
-class UserNew(BaseModel):
+class UserOut(BaseModel):
     name:str
     mail: str
-    birthday: datetime.date
-    gender: str
