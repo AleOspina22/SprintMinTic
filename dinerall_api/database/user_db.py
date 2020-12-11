@@ -1,15 +1,22 @@
 from typing import Dict
 from pydantic import BaseModel
+import datetime
 
 class UserInDB(BaseModel):
-    username: str
+    name: str
     mail: str #pienso que es mejor por correo porque no le veo la finalidad a que los usuarios tengan un seudonimo dado que no tienen interaccion entre ellos, sin embargo, lo dejo por si algo sale mal
     password: str
+    birthday:
+    gender: str
 
 database_users = Dict[str, UserInDB]
 database_users = {
-    "prueba1": UserInDB(**{"username":"prueba1","mail":"prueba1@mail.com","password":"prueba1"}),
-    "prueba2": UserInDB(**{"username":"prueba2","mail":"prueba2@mail.com","password":"prueba2"}),
+    "prueba1": UserInDB(**{"username":"prueba1",
+                            "mail":"prueba1@mail.com",
+                            "password":"prueba1"}),
+    "prueba2": UserInDB(**{"username":"prueba2",
+                            "mail":"prueba2@mail.com",
+                            "password":"prueba2"}),
 }
 #funcion de loguear
 def login(username:str,password:str):
