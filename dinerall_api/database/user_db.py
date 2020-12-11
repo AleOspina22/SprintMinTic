@@ -11,12 +11,15 @@ class UserInDB(BaseModel):
 
 database_users = Dict[str, UserInDB]
 database_users = {
-    "prueba1": UserInDB(**{"username":"prueba1",
-                            "mail":"prueba1@mail.com",
-                            "password":"prueba1"}),
-    "prueba2": UserInDB(**{"username":"prueba2",
-                            "mail":"prueba2@mail.com",
-                            "password":"prueba2"}),
+    "Carlos": UserInDB(**{"username":"Carlos",
+                            "mail":"carlos@gmail.com",
+                            "password":"carlos12345"}),
+    "Veronica": UserInDB(**{"username":"Veronica",
+                            "mail":"veronica@gmail.com",
+                            "password":"veronica12345"}),
+    "James": UserInDB(**{"username":"James",
+                            "mail":"james@gmail.com",
+                            "password":"james12345"}),
 }
 #funcion de loguear
 def login(username:str,password:str):
