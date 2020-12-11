@@ -6,7 +6,7 @@ class UserInDB(BaseModel):
     name: str
     mail: str #pienso que es mejor por correo porque no le veo la finalidad a que los usuarios tengan un seudonimo dado que no tienen interaccion entre ellos, sin embargo, lo dejo por si algo sale mal
     password: str
-    birthday:
+    birthday: datetime
     gender: str
 
 database_users = Dict[str, UserInDB]
