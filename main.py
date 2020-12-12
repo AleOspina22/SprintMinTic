@@ -7,7 +7,7 @@ from models.user_models import UserIn, UserNew, UserOut
 
 api = FastAPI()
 
-@app.get("/")
+@api.get("/")
 async def read_root():
     return "Hola, bienvenidx a Dinerall."
 
