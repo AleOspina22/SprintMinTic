@@ -14,7 +14,7 @@
       <router-view></router-view>
     </div>
     <div class="footer">
-      <h2>Misión TIC 2022</h2>
+      <h2>Dinerall 2020</h2>
     </div>
   </div>
 </template>
@@ -69,7 +69,7 @@
     height: 10vh;
     min-height: 100px;
 
-    background-color: #283747 ;
+    background-color: #88b92d ;
     color:#E5E7E9  ;
 
     display: flex;
@@ -92,7 +92,7 @@
   }
   .header nav button{
     color: #E5E7E9;
-    background: #283747;
+    background: #7fa1c5;
     border: 1px solid #E5E7E9;
     border-radius: 5px;
     padding: 10px 20px;
