@@ -7,6 +7,10 @@ from models.user_models import UserIn, UserNew, UserOut
 
 api = FastAPI()
 
+@api.get("/")
+async def read_root():
+    return "Hola, bienvenidx a Dinerall."
+
 @api.post("/user/auth/")
 async def auth_user(user_in: UserIn):
 
