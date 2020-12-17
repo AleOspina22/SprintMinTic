@@ -14,7 +14,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost", 
     "http://localhost:8080",
-    "https://dinerall-app.herokuapp.com/",
+    "https://dinerall-app.herokuapp.com",
 ]
 
 api.add_middleware(
