@@ -10,9 +10,11 @@ api = FastAPI()
 
 
 origins = [
-    "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
-    "http://localhost", "http://localhost:8080",
-    "https://dinerall-app.herokuapp.com/"
+    "http://localhost.tiangolo.com", 
+    "https://localhost.tiangolo.com",
+    "http://localhost", 
+    "http://localhost:8080",
+    "https://dinerall-app.herokuapp.com/",
 ]
 
 api.add_middleware(
