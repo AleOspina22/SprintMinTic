@@ -12,7 +12,7 @@ api = FastAPI()
 origins = [
     "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
     "http://localhost", "http://localhost:8080",
-    "https://dinerall-app.herokuapp.com/" 
+    "https://dinerall-app.herokuapp.com/"
 ]
 
 api.add_middleware(
@@ -33,12 +33,12 @@ async def auth_user(user_in: UserIn):
         raise HTTPException(status_code=404, detail="No existe un regristado con el correo electrónico")
 
     if user_in_db.password != user_in.password:
-        return {'Autenticación': False}
+        return False
+    else:
+        return True
 
-    return {"Autenticación": True}
 
-
-@api.put("/user/signup/")
+@api.post("/user/signup/")
 async def create_user(user_new: UserNew):
 
     user_in_db = get_user(user_new.mail)
