@@ -15,3 +15,5 @@ class UserNew(BaseModel):
 class UserOut(BaseModel):
     name:str
     mail: str
+    birthday: date
+    gender: str
