@@ -10,7 +10,10 @@ class TransaDB(BaseModel):
     cbanout: int
     efectivout: int
     creditout: int
+    transfe: int
     regtransa: datetime
+    presupuesto: salarioin + inversionesin + otrosin + (transfe)
+    gasto: cbanout + efectivout + creditout
 
 database_transa = Dict[int, TransaDB]
 database_transa = {
