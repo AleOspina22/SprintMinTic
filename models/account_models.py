@@ -7,7 +7,6 @@ class AccountIn(BaseModel):
     balance: float
 
 class AccountOut(BaseModel):
-    id_account: int
     user_mail: str
     name: str    
     type: str    

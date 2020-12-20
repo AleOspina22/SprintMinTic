@@ -1,3 +1,5 @@
+
+from models.account_models import AccountIn
 from typing import Dict
 from pydantic import BaseModel
 
@@ -48,15 +50,20 @@ database_accounts = {
 
 
 
-def create_account(account_in_db: AccountInDB):
-    generator["id"] = generator["id"] + 1
-    account_in_db.id_transaction = generator["id"]
 
+# Función para obtener las cuentas de un usuario
+def get_accounts(mail: str):
+    if mail in database_accounts.keys():
+        return database_accounts[mail]
+    else: 
+        return None
 
-def update_account(account_in_db: AccountInDB):
-    generator["id"] = generator["id"] + 1
-    account_in_db.id_transaction = generator["id"]
-
+# Función para crear/actualizar el usuario
+def save_account(account_in_db: AccountIn):
+    user_mail = account_in_db.user_mail
+    account_name = account_in_db.name
+    database_accounts[user_mail][account_name] = AccountInDB(**account_in_db.dict())
+    return account_in_db
 
 
 
