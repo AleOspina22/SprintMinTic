@@ -2,7 +2,7 @@ from typing import Dict
 from pydantic import BaseModel
 from datetime import date
 
-from models.user_models import UserIn
+from models.user_models import UserNew
 
 class UserInDB(BaseModel):
     name: str
@@ -41,7 +41,7 @@ def get_user(mail: str):
         return None
 
 # Función para guardar el usuario
-def save_user(user_in_db: UserIn):
+def save_user(user_in_db: UserNew):
     mail = user_in_db.mail
     database_users[mail] = UserInDB(**user_in_db.dict())
     return user_in_db

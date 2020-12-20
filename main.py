@@ -1,10 +1,17 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import datetime
 
+# User
 from database.user_db import UserInDB
 from database.user_db import get_user, save_user
-from models.user_models import UserIn, UserNew, UserOut
-from fastapi.middleware.cors import CORSMiddleware
+from models.user_models import UserIn, UserNew,  UserOut
+# Report
+from database.account_db import AccountInDB
+from database.account_db import get_accounts, save_account
+from models.account_models import AccountIn, AccountOut
+
+
 
 api = FastAPI()
 
@@ -24,9 +31,9 @@ api.add_middleware(
 
 @api.get("/")
 async def read_root():
-    return "Hola, bienvenidx a Dinerall."
+    return "Hi, welcome to Dinerall V2"
 
-@api.post("/user/auth/")
+@api.post("/login/")
 async def auth_user(user_in: UserIn):
 
     user_in_db = get_user(user_in.mail)
@@ -40,7 +47,7 @@ async def auth_user(user_in: UserIn):
         return True
 
 
-@api.post("/user/signup/")
+@api.post("/signup/")
 async def create_user(user_new: UserNew):
 
     user_in_db = get_user(user_new.mail)
@@ -50,3 +57,45 @@ async def create_user(user_new: UserNew):
     user_new = save_user(user_new)
     user_out = UserOut(**user_new.dict())
     return user_out
+
+
+@api.get("/{mail}/balance/")
+async def get_balance(mail: str): 
+
+    accounts_in_db = get_accounts(mail)
+
+    if accounts_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+
+    balance_out = {}
+    for key in accounts_in_db.keys():
+        acc = AccountOut(**accounts_in_db[key].dict())
+        balance_out.update({acc.name: acc.balance}) 
+
+    return balance_out
+
+@api.get("/{mail}/balance/list-accounts")
+async def get_balance(mail: str): 
+
+    accounts_in_db = get_accounts(mail)
+
+    if accounts_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+
+    return accounts_in_db
+
+@api.post("/settings/accounts/new")
+async def create_account(account_in: AccountIn):
+
+    user_in_db = get_user(account_in.user_mail)
+
+    if user_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+
+    account_in_db = AccountInDB(**account_in.dict())
+    account_in_db = save_account(account_in_db)
+
+    if account_in_db == None:
+        raise HTTPException(status_code=404, detail="Ya existe una cuenta con el mismo nombre")
+
+    return account_in_db 
