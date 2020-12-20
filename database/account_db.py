@@ -54,6 +54,18 @@ def get_accounts(mail: str):
         return None
 
 # Función para crear/actualizar el usuario
+def save_new_user(mail: str):
+    default_account = {"Billetera": AccountInDB(**{'user_mail': mail,
+                                                        'name': 'Billetera',   
+                                                        'category': 'Efectivo',
+                                                        'balance': 0.0})
+    }
+    database_accounts.update({mail: default_account})
+    return database_accounts[mail]
+
+
+
+# Función para crear/actualizar el usuario
 def save_account(account_in_db: AccountIn):
     user_mail = account_in_db.user_mail
     account_name = account_in_db.name

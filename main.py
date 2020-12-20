@@ -8,7 +8,7 @@ from database.user_db import get_user, save_user
 from models.user_models import UserIn, UserNew,  UserOut
 # Report
 from database.account_db import AccountInDB
-from database.account_db import get_accounts, save_account
+from database.account_db import get_accounts, save_account, save_new_user
 from models.account_models import AccountIn, AccountOut
 
 
@@ -56,6 +56,9 @@ async def create_user(user_new: UserNew):
 
     user_new = save_user(user_new)
     user_out = UserOut(**user_new.dict())
+
+    #Creamos una cuenta default para el nuevo usuario
+    user_account =  save_new_user(user_new.mail)
     return user_out
 
 
